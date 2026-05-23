@@ -1,12 +1,15 @@
 import "./i18n";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
+
 import "./style.css";
 import { Github, Instagram, Mail, MapPin } from "lucide-react";
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FolderIcon from '@mui/icons-material/Folder';
 import ChatIcon from '@mui/icons-material/Chat';
+
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8080").replace(/\/$/, "");
 
 
 export default function App() {
@@ -26,7 +29,7 @@ export default function App() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:8080/message", {
+      const res = await fetch(`${API_BASE_URL}/message`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -42,7 +45,7 @@ export default function App() {
         alert("留言送出成功！");
         // 重新拉留言
         setLoadingMessages(true);
-        fetch("http://localhost:8080/message/public")
+        fetch(`${API_BASE_URL}/message/public`)
           .then(res => res.ok ? res.json() : [])
           .then(data => {
             if (Array.isArray(data)) setPublicMessages(data);
@@ -62,7 +65,7 @@ export default function App() {
   React.useEffect(() => {
     if (page === "message") {
       setLoadingMessages(true);
-      fetch("http://localhost:8080/message/public")
+      fetch(`${API_BASE_URL}/message/public`)
         .then(res => res.ok ? res.json() : [])
         .then(data => {
           if (Array.isArray(data)) setPublicMessages(data);

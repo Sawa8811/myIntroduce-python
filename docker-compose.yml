@@ -1,3 +1,9 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   db:
     image: postgres:16-alpine
@@ -12,6 +18,7 @@ services:
     volumes:
       - postgres_data_local:/var/lib/postgresql/data
       - ./backend/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    logging: *default-logging
 
   backend:
     build: ./backend
@@ -24,6 +31,7 @@ services:
       - db
     ports:
       - "${BACKEND_PORT:-8080}:8000"
+    logging: *default-logging
 
 volumes:
   postgres_data_local:

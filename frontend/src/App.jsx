@@ -1,9 +1,9 @@
 import "./i18n";
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./style.css";
-import { Github, Instagram, Mail, MapPin } from "lucide-react";
+import { ChevronDown, ChevronUp, Github, Instagram, Mail, MapPin } from "lucide-react";
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -21,6 +21,11 @@ export default function App() {
   // === 新增 ===
   const [publicMessages, setPublicMessages] = useState([]);
   const [loadingMessages, setLoadingMessages] = useState(true);
+  const [showAllSkills, setShowAllSkills] = useState(false);
+  const [isDesktopSkills, setIsDesktopSkills] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia("(min-width: 701px)").matches;
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,6 +81,14 @@ export default function App() {
     }
   }, [page]); // 每次切到 message 頁面都會 fetch
 
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 701px)");
+    const updateSkillsLayout = () => setIsDesktopSkills(media.matches);
+    updateSkillsLayout();
+    media.addEventListener("change", updateSkillsLayout);
+    return () => media.removeEventListener("change", updateSkillsLayout);
+  }, []);
+
   const allProjects = [
     {
       title: "UserLogin",
@@ -95,6 +108,32 @@ export default function App() {
       可以在這邊新增專案
     */
   ];
+
+  const skills = [
+    { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+    { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+    { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+    { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+    { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+    { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "Podman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/podman/podman-original.svg" },
+    { name: "Vite", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" },
+    { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+    { name: "Oracle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
+    { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+    { name: "LaTeX", icon: "https://upload.wikimedia.org/wikipedia/commons/9/92/LaTeX_logo.svg" },
+    { name: "MUI", icon: "https://mui.com/static/logo.png" },
+  ];
+
+  const featuredSkillCount = isDesktopSkills ? 10 : 6;
+  const visibleSkills = showAllSkills ? skills : skills.slice(0, featuredSkillCount);
 
   const filteredProjects = allProjects;
   return (
@@ -132,13 +171,13 @@ export default function App() {
                 <img src="/sawa.jpg" alt="Sawa Ho" className="avatar" />
                 <div className="icons">
                   <a href="https://github.com/Sawa8811" target="_blank" rel="noreferrer">
-                    <Github color="white" size={28} />
+                    <Github color="white" size={28} className="social-icon" />
                   </a>
                   <a href="https://www.instagram.com/sawa88101" target="_blank" rel="noreferrer">
-                    <Instagram color="white" size={28} />
+                    <Instagram color="white" size={28} className="social-icon" />
                   </a>
                   <a href="mailto:sawa88101@gmail.com">
-                    <Mail color="white" size={28} />
+                    <Mail color="white" size={28} className="social-icon" />
                   </a>
                 </div>
               </div>
@@ -146,64 +185,23 @@ export default function App() {
 
             <div className="skills-section" id="skills">
               <div className="skills-list">
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-                  Java
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" />
-                  Spring Boot
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
-                  MySQL
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" />
-                  Oracle
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
-                  React
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" alt="Vite" />
-                  Vite
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-                  HTML
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-                  CSS
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-                  JavaScript
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-                  Git
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" />
-                  AWS
-                </div>
-                <div className="skill-icon">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
-                  Linux
-                </div>
-                <div className="skill-icon">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/LaTeX_logo.svg" alt="LaTeX" />
-                  LaTeX
-                </div>
-                <div className="skill-icon">
-                  <img src="https://mui.com/static/logo.png" alt="MUI" />
-                  MUI
-                </div>
-
+                {visibleSkills.map((skill) => (
+                  <div className="skill-icon" key={skill.name}>
+                    <img src={skill.icon} alt={skill.name} />
+                    {skill.name}
+                  </div>
+                ))}
               </div>
+              <button
+                type="button"
+                className="skills-toggle"
+                onClick={() => setShowAllSkills((current) => !current)}
+                aria-expanded={showAllSkills}
+                aria-label={showAllSkills ? t("skills_show_less") : t("skills_show_all")}
+                title={showAllSkills ? t("skills_show_less") : t("skills_show_all")}
+              >
+                {showAllSkills ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
+              </button>
             </div>
           </>
         )}
@@ -348,7 +346,7 @@ export default function App() {
                 <h3>{t("message_list_title")}</h3>
                 <div className="messages-scroll">
                   {loadingMessages ? (
-                    <div style={{ color: "#aaa", textAlign: "center", padding: "1em" }}>留言載入中...</div>
+                    <div style={{ color: "#aaa", textAlign: "center", padding: "1em" }}>{t("message_loading")}</div>
                   ) : Array.isArray(publicMessages) && publicMessages.length > 0 ? (
                     publicMessages.map((msg, idx) => (
                       <div className="message-card" key={idx}>
@@ -358,7 +356,7 @@ export default function App() {
                       </div>
                     ))
                   ) : (
-                    <div style={{ color: "#aaa", textAlign: "center", padding: "1em" }}>目前沒有留言</div>
+                    <div style={{ color: "#aaa", textAlign: "center", padding: "1em" }}>{t("message_empty")}</div>
                   )}
                 </div>
               </div>

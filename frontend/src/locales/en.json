@@ -38,5 +38,9 @@
   "career_item_2025_work": "From 2025 – Java Engineer at Yutaka Corporation",
   "career_cert_toeic": "TOEIC 600",
   "career_cert_japanese_part1": "JLPT N2",
-  "career_cert_japanese_part2": " (Currently N1 level)"
+  "career_cert_japanese_part2": " (Currently N1 level)",
+  "message_loading": "Loading messages...",
+  "message_empty": "No messages yet",
+  "skills_show_all": "Show all",
+  "skills_show_less": "Show less"
 }

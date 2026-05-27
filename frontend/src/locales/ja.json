@@ -38,5 +38,9 @@
   "message_submit": "送信",
   "message_list_title": "メッセージ一覧",
   "message_anonymous": "匿名",
-  "about_intro_hobby_extra": "、ゲーム、映画も楽しんでいます。"
+  "about_intro_hobby_extra": "、ゲーム、映画も楽しんでいます。",
+  "message_loading": "メッセージを読み込み中...",
+  "message_empty": "まだメッセージはありません",
+  "skills_show_all": "すべて表示",
+  "skills_show_less": "閉じる"
 }

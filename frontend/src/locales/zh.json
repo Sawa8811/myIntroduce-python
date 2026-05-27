@@ -17,7 +17,7 @@
   "career_title": "經歷・證照",
   "career_education_work": "學歷・工作經驗",
   "career_certifications_skills": "證照・技能",
- "career_item_2018": "2018年 台灣桃園陽明高校 畢業",
+  "career_item_2018": "2018年 台灣桃園陽明高校 畢業",
   "career_item_2022_part1": "2022年 芝浦工業大學",
   "career_item_2022_part2": "（機械制御系）",
   "career_item_2022_part3": "畢業",
@@ -38,5 +38,9 @@
   "message_submit": "送出",
   "message_list_title": "留言列表",
   "message_anonymous": "匿名",
-  "about_intro_hobby_extra": "、遊戲、電影也都很喜歡。"
+  "about_intro_hobby_extra": "、遊戲、電影也都很喜歡。",
+  "message_loading": "留言載入中...",
+  "message_empty": "目前沒有留言",
+  "skills_show_all": "顯示全部",
+  "skills_show_less": "收回"
 }

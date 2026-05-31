@@ -305,6 +305,24 @@ body {
   line-height: 1.85;
   letter-spacing: 0.01em;
 }
+.about-copy {
+  text-align: left;
+  margin: 1.5rem 0 0;
+}
+.about-copy p {
+  margin: 0 0 1.15rem;
+}
+.about-copy p:last-child {
+  margin-bottom: 0;
+}
+.about-motto {
+  color: #62a6f7;
+  font-weight: 700;
+  line-height: 1.65;
+}
+.about-hobby {
+  color: #e5c39a;
+}
 .about-left .highlight {
   color: #4f9df9;
   font-weight: bold;

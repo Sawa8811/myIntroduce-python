@@ -176,7 +176,7 @@ export default function App() {
                   <a href="https://www.instagram.com/sawa88101" target="_blank" rel="noreferrer">
                     <Instagram color="white" size={28} className="social-icon" />
                   </a>
-                  <a href="mailto:sawa88101@gmail.com">
+                  <a href="mailto:sawaWork8811@outlook.com">
                     <Mail color="white" size={28} className="social-icon" />
                   </a>
                 </div>
@@ -213,17 +213,18 @@ export default function App() {
             <div className="about-content">
               <div className="about-left">
                 <h3 style={{ textAlign: "center" }}>{t("about_title")}</h3>
-                <div style={{ textAlign: "left", margin: "1.5rem 0 0 0", lineHeight: "2" }}>
-                  <b>{t("about_intro_bold")}</b><br />
-                  {t("about_intro_birth")}<br />
-                  <span style={{ color: "#62a6f7", fontWeight: 600 }}>{t("about_intro_skills")}</span><br />
-                  <br />
-                  <span style={{ fontStyle: "italic", color: "#aaa" }}>
-                    {t("about_intro_love")}
-                  </span><br />
-                  <br />
-                  {t("about_intro_work_hobby")}<br />
-                  <span style={{ color: "#e5c39a" }}>{t("about_intro_hobby")}</span>{t("about_intro_hobby_extra")}
+                <div className="about-copy">
+                  <p>
+                    <b>{t("about_intro_bold")}</b>
+                    <br />
+                    {t("about_intro_birth")}
+                  </p>
+                  <p className="about-motto">{t("about_intro_skills")}</p>
+                  <p>{t("about_intro_love")}</p>
+                  <p>{t("about_intro_work_hobby")}</p>
+                  <p>
+                    <span className="about-hobby">{t("about_intro_hobby")}</span>{t("about_intro_hobby_extra")}
+                  </p>
                 </div>
               </div>
               <div className="about-right">
@@ -261,6 +262,16 @@ export default function App() {
                       {t("career_cert_japanese_part1")}
                       <span className="highlight-paren">{t("career_cert_japanese_part2")}</span>
                     </li>
+                  </ul>
+                </div>
+
+                <div className="career-block">
+                  <div className="career-title">{t("services_title")}</div>
+                  <ul>
+                    <li>{t("services_item_web")}</li>
+                    <li>{t("services_item_api")}</li>
+                    <li>{t("services_item_deploy")}</li>
+                    <li>{t("services_item_support")}</li>
                   </ul>
                 </div>
               </div>
